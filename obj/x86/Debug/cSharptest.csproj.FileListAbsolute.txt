@@ -1,0 +1,4 @@
+D:\Git\cSharptest\bin\Debug\cSharptest.exe
+D:\Git\cSharptest\bin\Debug\cSharptest.pdb
+D:\Git\cSharptest\obj\x86\Debug\cSharptest.exe
+D:\Git\cSharptest\obj\x86\Debug\cSharptest.pdb
