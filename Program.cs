@@ -168,7 +168,7 @@ namespace cSharpTest8_15
             Console.WriteLine("li1:{0},li2:{1}", li1.TheValue, li2.TheValue);
 
             li3 = -li1;
-            Console.WriteLine("-{0}={1}",li2.TheValue, li1.TheValue);
+            Console.WriteLine("-{0}={1}",li1.TheValue, li3.TheValue);
 
             li3 = li2 - li1;
             Console.WriteLine("{0}-{1}={2}", li2.TheValue, li1.TheValue, li3.TheValue);
