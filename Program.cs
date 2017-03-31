@@ -179,3 +179,74 @@ using System.Text;
 //        }
 //    }
 //}
+//namespace cSarpTest9_6
+//{
+//    class program
+//    {
+//        static void Main()
+//        {
+//            int x = 3;
+//            while (x > 0)
+//            {
+//                Console.WriteLine("x:{0}", x);
+//                x--;
+//            }
+//            Console.WriteLine("Out of loop");
+//            Console.ReadKey();
+//        }
+//    }
+//}
+//namespace cSarpTest9_7
+//{
+//    class program
+//    {
+//        static void Main()
+//        {
+//            int x = 0;
+//            do
+//                Console.WriteLine("x is {0}", x++);
+//            while (x < 3);
+//            Console.ReadKey();
+//        }
+//    }
+//}
+//namespace cSarpTest9_8
+//{
+//    class program
+//    {
+//        static void Main()
+//        {
+//            for (int i = 0; i < 3; i++)
+//            {
+//                Console.WriteLine("Inside loop.i:{0}", i);
+//            }
+//            Console.WriteLine("Out of Loop");
+//            Console.ReadKey();
+//        }
+//    }
+//}
+namespace cSarpTest9_9_1
+{
+    class program
+    {
+        static void Main()
+        {
+            for(int x = 1; x < 6; x++)
+            {
+                switch (x)
+                {
+                    case 2:
+                        Console.WriteLine("x is {0} -- In Case 2", x);
+                        break;
+                    case 5:
+                        Console.WriteLine("x is {0} -- In Case 5", x);
+                        break;
+                    default:
+                        Console.WriteLine("x is {0} -- In Default case", x);
+                        break;
+                }
+            }
+            Console.ReadKey();
+        }
+    }
+}
