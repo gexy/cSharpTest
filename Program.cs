@@ -250,28 +250,80 @@ using System.Text;
 //        }
 //    }
 //}
-namespace cSarpTest10_1
+//namespace cSarpTest10_1
+//{
+//    struct Point
+//    {
+//        public int X;
+//        public int Y;
+//    }
+//    class program
+//    {
+//        static void Main()
+//        {
+//            Point first, second, third;
+//            first.X = 10; first.Y = 10;
+//            second.X = 20; second.Y = 20;
+//            third.X = first.X + second.X;
+//            third.Y = first.Y + first.Y;
+//            Console.WriteLine("first: {0},{1}", first.X, first.Y);
+//            Console.WriteLine("second: {0},{1}", second.X, second.Y);
+//            Console.WriteLine("third: {0},{1}", third.X, third.Y);
+
+//            Console.ReadKey();
+//        }
+//    }
+//}
+namespace cSarpTest11_2
 {
-    struct Point
+    [Flags]
+    enum CardDeckSettings : uint
     {
-        public int X;
-        public int Y;
+        SingleDeck = 0x01,
+        LargePictures = 0x02,
+        FancyNumbers = 0x04,
+        Animation = 0x08
+    }
+    class MyClass
+    {
+        bool UseSingleDeck = false,
+             UseBigPics = false,
+             UseFancyNumbers = false,
+             UseAnimation = false,
+             UseAnimationAndFancyNumbers = false;
+
+        public void SetOptions(CardDeckSettings ops)
+        {
+            UseSingleDeck = ops.HasFlag(CardDeckSettings.SingleDeck);
+            UseBigPics = ops.HasFlag(CardDeckSettings.LargePictures);
+            UseFancyNumbers = ops.HasFlag(CardDeckSettings.FancyNumbers);
+            UseAnimation = ops.HasFlag(CardDeckSettings.Animation);
+
+            CardDeckSettings testFlags = CardDeckSettings.Animation | CardDeckSettings.FancyNumbers;
+            UseAnimationAndFancyNumbers = ops.HasFlag(testFlags);
+        }
+
+        public void PrintOptions()
+        {
+            Console.WriteLine("Option settings:");
+            Console.WriteLine("Use Single Deck                 -{0}", UseSingleDeck);
+            Console.WriteLine("Use Large Pictures              -{0}", UseBigPics);
+            Console.WriteLine("Use Fancy Numbers               -{0}", UseFancyNumbers);
+            Console.WriteLine("Show Animation                  -{0}", UseAnimation);
+            Console.WriteLine("Show Animation and FancyNumbers -{0}", UseAnimationAndFancyNumbers);
+        }
     }
     class program
     {
         static void Main()
         {
-            Point first, second, third;
-            first.X = 10; first.Y = 10;
-            second.X = 20; second.Y = 20;
-            third.X = first.X + second.X;
-            third.Y = first.Y + first.Y;
-            Console.WriteLine("first: {0},{1}", first.X, first.Y);
-            Console.WriteLine("second: {0},{1}", second.X, second.Y);
-            Console.WriteLine("third: {0},{1}", third.X, third.Y);
-
+            MyClass mc = new MyClass();
+            CardDeckSettings ops = CardDeckSettings.SingleDeck | CardDeckSettings.FancyNumbers | CardDeckSettings.Animation;
+            mc.SetOptions(ops);
+            mc.PrintOptions();
             Console.ReadKey();
         }
     }
 }
+
 
