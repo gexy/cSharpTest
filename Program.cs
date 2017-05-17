@@ -325,24 +325,130 @@ using System.Text;
 //        }
 //    }
 //}
-namespace cSarpTest12_7
-{
-    class program
-    {
-        static void Main()
-        {
-            int[] myIntArray = new int[4];
-            for(int i = 0; i < 4; i++)
-            {
-                myIntArray[i] = i * 10;
-            }
-            for(int i = 0; i < 4; i++)
-            {
-                Console.WriteLine("Value of element {0} = {1}", i, myIntArray[i]);
-            }
-            Console.ReadKey();
-        }
-    }
-}
+//namespace cSarpTest12_7
+//{
+//    class program
+//    {
+//        static void Main()
+//        {
+//            int[] myIntArray = new int[4];
+//            for(int i = 0; i < 4; i++)
+//            {
+//                myIntArray[i] = i * 10;
+//            }
+//            for(int i = 0; i < 4; i++)
+//            {
+//                Console.WriteLine("Value of element {0} = {1}", i, myIntArray[i]);
+//            }
+//            Console.ReadKey();
+//        }
+//    }
+//}
+//namespace cSarpTest12_8
+//{
+//    class program
+//    {
+//        static void Main()
+//        {
+//            int[][,] Arr;
+//            Arr = new int[3][,];
+//            Arr[0] = new int[,] { { 10, 20 }, { 100, 200 } };
+//            Arr[1] = new int[,] { { 30, 40, 50 }, { 300, 400, 500 } };
+//            Arr[2] = new int[,] { { 60, 70, 80, 90 }, { 600, 700, 800, 900 } };
+//            for (int i = 0; i < Arr.GetLength(0); i++)
+//            {
+//                for (int j = 0; j < Arr[i].GetLength(0); j++)
+//                {
+//                    for (int k = 0; k < Arr[i].GetLength(1); k++)
+//                    {
+//                        Console.WriteLine("[{0}][{1},{2}] = {3}", i, j, k, Arr[i][j, k]);
+//                    }
+//                    Console.WriteLine("");
+//                }
+//                Console.WriteLine("");
+//            }
+//            Console.ReadKey();
+//        }
+//    }
+//}
+//namespace cSharpTest13_10
+//{
+//    delegate void PrintFunction();
+
+//    class Test
+//    {
+//        public void Print1()
+//        {
+//            Console.WriteLine("Print1 -- instance");
+//        }
+//        public static void Print2()
+//        {
+//            Console.WriteLine("Print2 -- static");
+//        }
+//    }
+
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            Test t = new Test();
+//            PrintFunction pf;
+
+//            pf = t.Print1;
+//            pf += Test.Print2;
+//            pf += t.Print1;
+//            pf += Test.Print2;
+
+//            if (null != pf)
+//                pf();
+//            else
+//                Console.WriteLine("Delegate is empty");
+//            Console.ReadKey();
+//        }
+//    }
+//}
+//namespace cSharpTest13_11
+//{
+//    delegate int MyDel();
+//    class MyClass
+//    {
+//        int IntValue = 5;
+//        public int Add2() { IntValue += 2; return IntValue; }
+//        public int Add3() { IntValue += 3; return IntValue; }
+//    }
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            MyClass mc = new MyClass();
+//            MyDel mDel = mc.Add2;
+//            mDel += mc.Add3;
+//            mDel += mc.Add2;
+//            Console.WriteLine("Value:{0}", mDel());
+//            Console.ReadKey();
+//        }
+//    }
+//}
+//namespace cSharpTest13_12
+//{
+//    delegate void MyDel(ref int X);
+//    class MyClass
+//    {
+//        public void Add2(ref int x) { x += 2; }
+//        public void Add3(ref int x) { x += 3; }
+//        static void Main()
+//        {
+//            MyClass mc = new MyClass();
+//            MyDel mDel = mc.Add2;
+//            mDel += mc.Add3;
+//            mDel += mc.Add2;
+//            int x = 5;
+//            mDel(ref x);
+//            Console.WriteLine("Value:{0}", x);
+//            Console.ReadKey();
+//        }
+//    }
+//}
+namespace cSharpTest13_13
 
 
