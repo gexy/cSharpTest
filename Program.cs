@@ -466,25 +466,67 @@ using System.Text;
 //        }
 //    }
 //}
-namespace cSharpTest13_14
-{
-    delegate double MyDel(int par);
+//namespace cSharpTest13_14
+//{
+//    delegate double MyDel(int par);
 
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            MyDel del = delegate (int x) { return x + 1; };
+//            MyDel le1 = (int x) => { return x + 1; };
+//            MyDel le2 = (x) => { return x + 1; };
+//            MyDel le3 = x => { return x + 1; };
+//            MyDel le4 = x => x + 1;
+
+//            Console.WriteLine("{0}", del(12));
+//            Console.WriteLine("{0}", le1(12));
+//            Console.WriteLine("{0}", le2(12));
+//            Console.WriteLine("{0}", le3(12));
+//            Console.WriteLine("{0}", le4(12));
+//            Console.ReadKey();
+//        }
+//    }
+//}
+namespace cSharpTest14_5
+{
+    delegate void Handler();
+    class Incrementer
+    {
+        public event Handler CountedADozen;
+
+        public void DoCount()
+        {
+            for (int i = 1; i < 100; i++)
+                if (i % 12 == 0 && CountedADozen != null)
+                    CountedADozen();
+        } 
+    }
+    class Dozens
+    {
+        public int DozensCount { get; private set; }
+
+        public Dozens(Incrementer incrementer)
+        {
+            DozensCount = 0;
+            incrementer.CountedADozen += IncrementDozensCount;
+        }
+
+        void IncrementDozensCount()
+        {
+            DozensCount++;
+        }
+    }
     class Program
     {
         static void Main()
         {
-            MyDel del = delegate (int x) { return x + 1; };
-            MyDel le1 = (int x) => { return x + 1; };
-            MyDel le2 = (x) => { return x + 1; };
-            MyDel le3 = x => { return x + 1; };
-            MyDel le4 = x => x + 1;
+            Incrementer incrementer = new Incrementer();
+            Dozens dozensCounter = new Dozens(incrementer);
 
-            Console.WriteLine("{0}", del(12));
-            Console.WriteLine("{0}", le1(12));
-            Console.WriteLine("{0}", le2(12));
-            Console.WriteLine("{0}", le3(12));
-            Console.WriteLine("{0}", le4(12));
+            incrementer.DoCount();
+            Console.WriteLine("Number of dozens = {0}", dozensCounter.DozensCount);
             Console.ReadKey();
         }
     }
