@@ -489,19 +489,109 @@ using System.Text;
 //        }
 //    }
 //}
-namespace cSharpTest14_5
+//namespace cSharpTest14_5
+//{
+//    delegate void Handler();
+//    class Incrementer
+//    {
+//        public event Handler CountedADozen;
+
+//        public void DoCount()
+//        {
+//            for (int i = 1; i < 100; i++)
+//                if (i % 12 == 0 && CountedADozen != null)
+//                    CountedADozen();
+//        } 
+//    }
+//    class Dozens
+//    {
+//        public int DozensCount { get; private set; }
+
+//        public Dozens(Incrementer incrementer)
+//        {
+//            DozensCount = 0;
+//            incrementer.CountedADozen += IncrementDozensCount;
+//        }
+
+//        void IncrementDozensCount()
+//        {
+//            DozensCount++;
+//        }
+//    }
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            Incrementer incrementer = new Incrementer();
+//            Dozens dozensCounter = new Dozens(incrementer);
+
+//            incrementer.DoCount();
+//            Console.WriteLine("Number of dozens = {0}", dozensCounter.DozensCount);
+//            Console.ReadKey();
+//        }
+//    }
+//}
+//namespace cSharpTest14_6
+//{
+//    class Incrementer
+//    {
+//        public event EventHandler CountedADozen;
+
+//        public void DoCount()
+//        {
+//            for (int i = 1; i < 100; i++)
+//                if (i % 12 == 0 && CountedADozen != null)
+//                    CountedADozen(this, null);
+//        }
+//    }
+//    class Dozens
+//    {
+//        public int DozensCount { get; private set; }
+
+//        public Dozens(Incrementer incrementer)
+//        {
+//            DozensCount = 0;
+//            incrementer.CountedADozen += IncrementDozensCount;
+//        }
+
+//        void IncrementDozensCount(object source, EventArgs e)
+//        {
+//            DozensCount++;
+//        }
+//    }
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            Incrementer incrementer = new Incrementer();
+//            Dozens dozensCounter = new Dozens(incrementer);
+//            incrementer.DoCount();
+//            Console.WriteLine("Number of dozens = {0}", dozensCounter.DozensCount);
+//            Console.ReadKey();
+//        }
+//    }
+//}
+namespace cSharpTest14_6_1
 {
-    delegate void Handler();
+    public class IncrementerEventArgs : EventArgs
+    {
+        public int IntertionCount { get; set; } 
+    }
+
     class Incrementer
     {
-        public event Handler CountedADozen;
+        public event EventHandler<IncrementerEventArgs> CountedAdozen;
 
         public void DoCount()
         {
+            IncrementerEventArgs args = new IncrementerEventArgs();
             for (int i = 1; i < 100; i++)
-                if (i % 12 == 0 && CountedADozen != null)
-                    CountedADozen();
-        } 
+                if (i % 12 == 0 && CountedAdozen != null)
+                {
+                    args.IntertionCount = i;
+                    CountedAdozen(this, args);
+                }
+        }
     }
     class Dozens
     {
@@ -510,11 +600,11 @@ namespace cSharpTest14_5
         public Dozens(Incrementer incrementer)
         {
             DozensCount = 0;
-            incrementer.CountedADozen += IncrementDozensCount;
+            incrementer.CountedAdozen += IncrementDozensCount;
         }
-
-        void IncrementDozensCount()
+        void IncrementDozensCount(object source, IncrementerEventArgs e)
         {
+            Console.WriteLine("Incremented at iteration:{0} in {1}", e.IntertionCount, source.ToString());
             DozensCount++;
         }
     }
@@ -527,7 +617,7 @@ namespace cSharpTest14_5
 
             incrementer.DoCount();
             Console.WriteLine("Number of dozens = {0}", dozensCounter.DozensCount);
-            Console.ReadKey();
         }
     }
 }
+
