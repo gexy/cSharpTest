@@ -571,52 +571,81 @@ using System.Text;
 //        }
 //    }
 //}
-namespace cSharpTest14_6_1
+//namespace cSharpTest14_6_1
+//{
+//    public class IncrementerEventArgs : EventArgs
+//    {
+//        public int IntertionCount { get; set; } 
+//    }
+
+//    class Incrementer
+//    {
+//        public event EventHandler<IncrementerEventArgs> CountedAdozen;
+
+//        public void DoCount()
+//        {
+//            IncrementerEventArgs args = new IncrementerEventArgs();
+//            for (int i = 1; i < 100; i++)
+//                if (i % 12 == 0 && CountedAdozen != null)
+//                {
+//                    args.IntertionCount = i;
+//                    CountedAdozen(this, args);
+//                }
+//        }
+//    }
+//    class Dozens
+//    {
+//        public int DozensCount { get; private set; }
+
+//        public Dozens(Incrementer incrementer)
+//        {
+//            DozensCount = 0;
+//            incrementer.CountedAdozen += IncrementDozensCount;
+//        }
+//        void IncrementDozensCount(object source, IncrementerEventArgs e)
+//        {
+//            Console.WriteLine("Incremented at iteration:{0} in {1}", e.IntertionCount, source.ToString());
+//            DozensCount++;
+//        }
+//    }
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            Incrementer incrementer = new Incrementer();
+//            Dozens dozensCounter = new Dozens(incrementer);
+
+//            incrementer.DoCount();
+//            Console.WriteLine("Number of dozens = {0}", dozensCounter.DozensCount);
+//        }
+//    }
+//}
+namespace cSharpTest14_6_2
 {
-    public class IncrementerEventArgs : EventArgs
+    class Publisher
     {
-        public int IntertionCount { get; set; } 
+        public event EventHandler SimpleEvent;
+        public void RaiseTheEvent() { SimpleEvent(this, null); }
     }
-
-    class Incrementer
+    class Subsvriber
     {
-        public event EventHandler<IncrementerEventArgs> CountedAdozen;
-
-        public void DoCount()
-        {
-            IncrementerEventArgs args = new IncrementerEventArgs();
-            for (int i = 1; i < 100; i++)
-                if (i % 12 == 0 && CountedAdozen != null)
-                {
-                    args.IntertionCount = i;
-                    CountedAdozen(this, args);
-                }
-        }
-    }
-    class Dozens
-    {
-        public int DozensCount { get; private set; }
-
-        public Dozens(Incrementer incrementer)
-        {
-            DozensCount = 0;
-            incrementer.CountedAdozen += IncrementDozensCount;
-        }
-        void IncrementDozensCount(object source, IncrementerEventArgs e)
-        {
-            Console.WriteLine("Incremented at iteration:{0} in {1}", e.IntertionCount, source.ToString());
-            DozensCount++;
-        }
+        public void MethodA(object o, EventArgs e) { Console.WriteLine("AAA"); }
+        public void MethodB(object o, EventArgs e) { Console.WriteLine("BBB"); }
     }
     class Program
     {
         static void Main()
         {
-            Incrementer incrementer = new Incrementer();
-            Dozens dozensCounter = new Dozens(incrementer);
+            Publisher p = new Publisher();
+            Subsvriber s = new Subsvriber();
 
-            incrementer.DoCount();
-            Console.WriteLine("Number of dozens = {0}", dozensCounter.DozensCount);
+            p.SimpleEvent += s.MethodA;
+            p.SimpleEvent += s.MethodB;
+            p.RaiseTheEvent();
+
+            Console.WriteLine("\r\nRemove MethodB");
+            p.SimpleEvent -= s.MethodB;
+            p.RaiseTheEvent();
         }
     }
 }
