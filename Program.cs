@@ -620,33 +620,133 @@ using System.Text;
 //        }
 //    }
 //}
-namespace cSharpTest14_6_2
+//namespace cSharpTest14_6_2
+//{
+//    class Publisher
+//    {
+//        public event EventHandler SimpleEvent;
+//        public void RaiseTheEvent() { SimpleEvent(this, null); }
+//    }
+//    class Subsvriber
+//    {
+//        public void MethodA(object o, EventArgs e) { Console.WriteLine("AAA"); }
+//        public void MethodB(object o, EventArgs e) { Console.WriteLine("BBB"); }
+//    }
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            Publisher p = new Publisher();
+//            Subsvriber s = new Subsvriber();
+
+//            p.SimpleEvent += s.MethodA;
+//            p.SimpleEvent += s.MethodB;
+//            p.RaiseTheEvent();
+
+//            Console.WriteLine("\r\nRemove MethodB");
+//            p.SimpleEvent -= s.MethodB;
+//            p.RaiseTheEvent();
+//        }
+//    }
+//}
+//namespace cSharpTest15_1_1
+//{
+//    interface IInfo
+//    {
+//        string GetName();
+//        string GetAge();
+//    }
+
+//    class CA : IInfo
+//    {
+//        public string Name;
+//        public int Age;
+//        public string GetName() { return Name; }
+//        public string GetAge() { return Age.ToString(); }
+//    }
+
+//    class CB : IInfo
+//    {
+//        public string First;
+//        public string Last;
+//        public double PersonsAge;
+//        public string GetName() { return First + " " + Last; }
+//        public string GetAge() { return PersonsAge.ToString(); }
+//    }
+
+//    class Program
+//    {
+//        static void PrintInfo(IInfo item)
+//        {
+//            Console.WriteLine("Name:{0},Age {1}", item.GetName(), item.GetAge());
+//        }
+
+//        static void Main()
+//        {
+//            CA a = new CA() { Name = "John Doe", Age = 35 };
+//            CB b = new CB() { First = "Jane", Last = "Doe", PersonsAge = 33 };
+
+//            PrintInfo(a);
+//            PrintInfo(b);
+//        }
+//    }
+//}
+//namespace cSharpTest15_1_2
+//{
+//    class MyClass : IComparable
+//    {
+//        public int TheValue;
+//        public int CompareTo(object obj)
+//        {
+//            MyClass mc = (MyClass)obj;
+//            if (this.TheValue < mc.TheValue) return -1;
+//            if (this.TheValue > mc.TheValue) return 1;
+//            return 0;
+//        }
+//    }
+//    class Program
+//    {
+//        static void PrintOut(string s, MyClass[] mc)
+//        {
+//            Console.Write(s);
+//            foreach (var m in mc)
+//                Console.Write("{0} ", m.TheValue);
+//            Console.WriteLine("");
+//        }
+//        static void Main()
+//        {
+//            var myInt = new[] { 20, 4, 16, 9, 2 };
+//            MyClass[] mcArr = new MyClass[5];
+//            for (int i = 0; i < 5; i++)
+//            {
+//                mcArr[i] = new MyClass();
+//                mcArr[i].TheValue = myInt[i];
+//            }
+//            PrintOut("Initial Order: ", mcArr);
+//            Array.Sort(mcArr);
+//            PrintOut("Sorted Order: ", mcArr);
+//        }
+//    }
+//}
+namespace cSharpTest15_3
 {
-    class Publisher
+    interface IIfc1
     {
-        public event EventHandler SimpleEvent;
-        public void RaiseTheEvent() { SimpleEvent(this, null); }
+        void PrintOut(string s);
     }
-    class Subsvriber
+    class MyClass : IIfc1
     {
-        public void MethodA(object o, EventArgs e) { Console.WriteLine("AAA"); }
-        public void MethodB(object o, EventArgs e) { Console.WriteLine("BBB"); }
+        public void PrintOut(string s)
+        {
+            Console.WriteLine("Calling through: {0}", s);
+        }
     }
     class Program
     {
         static void Main()
         {
-            Publisher p = new Publisher();
-            Subsvriber s = new Subsvriber();
-
-            p.SimpleEvent += s.MethodA;
-            p.SimpleEvent += s.MethodB;
-            p.RaiseTheEvent();
-
-            Console.WriteLine("\r\nRemove MethodB");
-            p.SimpleEvent -= s.MethodB;
-            p.RaiseTheEvent();
+            MyClass mc = new MyClass();
+            mc.PrintOut("object");
         }
     }
 }
-

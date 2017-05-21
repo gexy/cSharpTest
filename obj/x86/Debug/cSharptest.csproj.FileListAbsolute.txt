@@ -3,3 +3,8 @@ D:\Git\cSharptest\bin\Debug\cSharptest.pdb
 D:\Git\cSharptest\obj\x86\Debug\cSharptest.exe
 D:\Git\cSharptest\obj\x86\Debug\cSharptest.pdb
 D:\Git\cSharptest\obj\x86\Debug\cSharptest.csprojResolveAssemblyReference.cache
+C:\Project\cSharptest\obj\x86\Debug\cSharptest.csprojResolveAssemblyReference.cache
+C:\Project\cSharptest\obj\x86\Debug\cSharptest.exe
+C:\Project\cSharptest\obj\x86\Debug\cSharptest.pdb
+C:\Project\cSharptest\bin\Debug\cSharptest.exe
+C:\Project\cSharptest\bin\Debug\cSharptest.pdb
