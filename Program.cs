@@ -728,25 +728,69 @@ using System.Text;
 //        }
 //    }
 //}
-namespace cSharpTest15_3
+//namespace cSharpTest15_3
+//{
+//    interface IIfc1
+//    {
+//        void PrintOut(string s);
+//    }
+//    class MyClass : IIfc1
+//    {
+//        public void PrintOut(string s)
+//        {
+//            Console.WriteLine("Calling through: {0}", s);
+//        }
+//    }
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            MyClass mc = new MyClass();
+//            mc.PrintOut("object");
+//        }
+//    }
+//}
+//namespace cSharpTest15_4
+//{
+//    interface IIfc1
+//    {
+//        void PrintOut(string s);
+//    }
+//    class MyClass : IIfc1
+//    {
+//        public void PrintOut(string s)
+//        {
+//            Console.WriteLine("Calling through: {0}", s);
+//        }
+//    }
+//    class Program
+//    {
+//        static void Main()
+//        {
+//            MyClass mc = new MyClass();
+//            mc.PrintOut("object");
+//            IIfc1 ifc = (IIfc1)mc;
+//            ifc.PrintOut("interface");
+//        }
+//    }
+//}
+namespace cSharpTest15_6
 {
-    interface IIfc1
+    interface IDataRetrieve { int GetData(); }
+    interface IDataStore { void SetData(int x); }
+    class MyData : IDataRetrieve, IDataStore
     {
-        void PrintOut(string s);
-    }
-    class MyClass : IIfc1
-    {
-        public void PrintOut(string s)
-        {
-            Console.WriteLine("Calling through: {0}", s);
-        }
+        int Mem1;
+        public int GetData() { return Mem1; }
+        public void SetData(int x) { Mem1 = x; }
     }
     class Program
     {
         static void Main()
         {
-            MyClass mc = new MyClass();
-            mc.PrintOut("object");
+            MyData data = new MyData();
+            data.SetData(5);
+            Console.WriteLine("value = {0}", data.GetData());
         }
     }
 }
